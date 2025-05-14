@@ -123,10 +123,10 @@ add_library(nvblox_gpu_hash STATIC
     src/gpu_hash/gpu_layer_view.cu
     src/gpu_hash/gpu_set.cu
 )
-add_dependencies(nvblox_gpu_hash nvblox_eigen stdgpu)
+add_dependencies(nvblox_gpu_hash nvblox_eigen nvblox_stdgpu)
 target_link_libraries(nvblox_gpu_hash
     PUBLIC
-    stdgpu
+    nvblox_stdgpu
     nvblox_eigen
     ${CUDA_nvToolsExt_LIBRARY}
     PRIVATE
@@ -260,7 +260,7 @@ include(GNUInstallDirs)
 set_target_properties(stdgpu PROPERTIES INTERFACE_LINK_LIBRARIES "")
 
 install(
-    TARGETS nvblox_lib nvblox_gpu_hash nvblox_datasets stdgpu nvblox_eigen fuse_3dmatch fuse_replica
+    TARGETS nvblox_lib nvblox_gpu_hash nvblox_datasets nvblox_stdgpu nvblox_eigen fuse_3dmatch fuse_replica
     EXPORT nvbloxTargets
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}/${PROJECT_NAME}
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -281,6 +281,9 @@ install(
     DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
     PATTERN "*/unsupported**" EXCLUDE
 )
+
+install(DIRECTORY ${ext_stdgpu_SOURCE_DIR}/src/
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 if(BUILD_REDISTRIBUTABLE)
     # Only re-distribute these headers if we're building the redistributable artifacts.
@@ -322,3 +325,4 @@ install(
     NAMESPACE nvblox::
     DESTINATION share/nvblox/cmake
 )
+
