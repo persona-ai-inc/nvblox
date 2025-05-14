@@ -58,7 +58,6 @@ add_library(nvblox_stdgpu INTERFACE)
   target_include_directories(nvblox_stdgpu INTERFACE
     $<BUILD_INTERFACE:${ext_stdgpu_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:include/stdgpu>)
-endif()
 
 # Restore CMAKE_MODULE_PATH
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH_OLD})
