@@ -1,10 +1,11 @@
+# fixed the commit based on https://github.com/nvidia-isaac/nvblox/issues/54#issuecomment-2275229796
 include(FetchContent)
 FetchContent_Declare(
   ext_stdgpu
   SYSTEM
   PREFIX stdgpu
   GIT_REPOSITORY https://github.com/stotko/stdgpu.git
-  GIT_TAG        e10f6f3ccc9902d693af4380c3bcd188ec34a2e6
+  GIT_TAG        1f0b2d51718692ec9046fe1b36173a591c611bdb
   UPDATE_COMMAND ""
 )
 
